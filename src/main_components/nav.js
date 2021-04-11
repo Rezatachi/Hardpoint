@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
+import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { Text } from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 const Nav = () => {
   return (
     <NavContainer>
@@ -11,27 +11,7 @@ const Nav = () => {
         Hardpoint <FontAwesomeIcon icon={faCrosshairs}></FontAwesomeIcon>
       </Text>
       <ul>
-        <li>
-          <Link to="/">
-            <a href="/">
-              <Text fontSize="2xl">Home</Text>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link to="/games">
-            <a href="/">
-              <Text fontSize="2xl">Games</Text>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <a href="https://github.com/Rezatachi">
-            <Text fontSize="2xl">
-              <FontAwesomeIcon icon={faCode} size="1x"></FontAwesomeIcon>
-            </Text>
-          </a>
-        </li>
+        <ColorModeSwitcher />
       </ul>
     </NavContainer>
   );

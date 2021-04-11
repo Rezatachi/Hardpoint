@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div>
       <GlobalStyle />
-      <Route path="/second">{({ match }) => <Nav hidden={match} />}</Route>
+      <Nav />
       <Switch>
         <Route exact path="/" component={Main}></Route>
         <Route path="/games" component={GameHome} />
