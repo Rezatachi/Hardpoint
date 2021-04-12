@@ -10,10 +10,16 @@ const GlobalStyle = createGlobalStyle`
 
 body{
     overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+
 }
 body::-webkit-scrollbar{
-    display: none;
+    width: 0.5rem;
 }
+body::-webkit-scrollbar-thumb{
+    background-color: darkgray;
+}
+  
 `;
 
 export default GlobalStyle;

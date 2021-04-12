@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { Text } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <NavContainer>
       <Text fontSize="3xl" fontWeight="bold">
-        Hardpoint <FontAwesomeIcon icon={faCrosshairs}></FontAwesomeIcon>
+        <Link to="/">Hardpoint</Link>{" "}
+        <FontAwesomeIcon icon={faCrosshairs}></FontAwesomeIcon>
       </Text>
       <ul>
         <ColorModeSwitcher />

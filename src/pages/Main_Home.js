@@ -52,31 +52,31 @@ const Main = () => {
           </Text>
         </Center>
         <Grid templateColumns="repeat(5, 1fr)" gap={6}>
-          <Center w="100%" h="240" bgColor="#4cc9f0">
+          <Center w="100%" h="240" bgColor="#006d77" rounded="2xl">
             <Text fontSize="4xl" fontWeight="extrabold">
               Steam
             </Text>
           </Center>
 
-          <Center w="100%" h="240" bgColor="#a9bcd0">
+          <Center w="100%" h="240" bgColor="#83c5be" rounded="2xl">
             <Text fontSize="4xl" fontWeight="extrabold">
-              iOS/Androidd
+              iOS/Android
             </Text>
           </Center>
 
-          <Center w="100%" h="240" bgColor="#f0c808">
+          <Center w="100%" h="240" bgColor="#ffbc42" rounded="2xl">
             <Text fontSize="4xl" fontWeight="extrabold">
               XBOX
             </Text>
           </Center>
 
-          <Center w="100%" h="240" bgColor="#00509d">
+          <Center w="100%" h="240" bgColor="#ffddd2" rounded="2xl">
             <Text fontSize="4xl" fontWeight="extrabold">
               Playstation
             </Text>
           </Center>
 
-          <Center w="100%" h="240" bgColor="#cae9ff">
+          <Center w="100%" h="240" bgColor="#e29578" rounded="2xl">
             <Text fontSize="4xl" fontWeight="extrabold">
               Nintendo
             </Text>
