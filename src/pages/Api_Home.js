@@ -22,7 +22,7 @@ const GameHome = () => {
   return (
     <GameList>
       {" "}
-      <GameDetail />
+      <GameDetail />{" "}
       <Flex>
         <Text fontSize="4xl" py="3rem" fontWeight="extrabold" cursor="pointer">
           <Link to="upcoming" spy={true} smooth={true}>

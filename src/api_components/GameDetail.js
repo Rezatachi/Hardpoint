@@ -2,17 +2,30 @@ import React from "react";
 //Styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Text } from "@chakra-ui/react";
+import { Text, Box, useColorMode, forwardRef } from "@chakra-ui/react";
 
 //Redux
 import { useSelector } from "react-redux";
 
 const GameDetail = () => {
   //Data
+  const { colorMode } = useColorMode();
   const { game, screen } = useSelector((state) => state.detail);
+  // 1. Create a custom motion component from Box
+  const MotionBox = motion(Box);
   return (
     <CardShadow>
-      <Detail>
+      {/* // 2. You'll get access to `motion` and `chakra` props in `MotionBox` */}
+      <MotionBox
+        margin="5rem 0rem"
+        width="80%"
+        borderRadius="1rem"
+        padding="2rem 5rem"
+        position="absolute"
+        left="10%"
+        bg={colorMode === "light" ? "#fff" : "#1A202C"}
+        textColor={colorMode === "light" ? "#000" : "#fff"}
+      >
         <Stats>
           <div className="rating">
             <Text fontSize="5xl" fontWeight="bold">
@@ -46,7 +59,7 @@ const GameDetail = () => {
               <img key={image.id} src={image.image} alt="screen" />
             ))}
         </Gallery>
-      </Detail>
+      </MotionBox>
     </CardShadow>
   );
 };
@@ -62,17 +75,6 @@ const CardShadow = styled(motion.div)`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const Detail = styled(motion.div)`
-  margin: 5rem 0rem;
-  width: 80%;
-  border-radius: 1rem;
-  padding: 2rem 5rem;
-  background: white;
-  position: absolute;
-  left: 10%;
-  color: black;
   img {
     width: 100%;
   }
