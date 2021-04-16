@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 //Styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Text, Flex, chakra } from "@chakra-ui/react";
+import { Text, Flex } from "@chakra-ui/react";
 import { pageAnimation } from "../animation";
 //Components
 import Game from "../api_components/Game";
@@ -33,7 +33,12 @@ const GameHome = () => {
       {isLoading ? (
         <BounceLoader loading="true" />
       ) : (
-        <GameList initial="hidden" animate="show" variants={pageAnimation}>
+        <GameList
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          variants={pageAnimation}
+        >
           {pathId && <GameDetail />}
           {/* When pathID is availible, go render it. If its not, dont render it */}
           <Flex>

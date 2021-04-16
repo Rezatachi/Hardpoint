@@ -26,12 +26,13 @@ import { GrReactjs } from "react-icons/gr";
 import { SiRedux } from "react-icons/si";
 import { Link } from "react-router-dom";
 //Framer motion
-import { pageAnimation } from "../animation";
+import { pageAnimation, fade } from "../animation";
 import { motion } from "framer-motion";
 
 const Main = () => {
   const { isOpen, onToggle } = useDisclosure();
   const MotionBox = chakra(motion.div);
+  const MotionText = chakra(motion.h1);
   const { colorMode } = useColorMode();
   return (
     <>
@@ -44,7 +45,14 @@ const Main = () => {
       >
         <Container maxW="container.xl" mt="20">
           <Flex>
-            <Text fontSize="7xl" fontWeight="semibold">
+            <MotionText
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              variants={fade}
+              fontSize="7xl"
+              fontWeight="semibold"
+            >
               <Text
                 bgGradient={
                   colorMode === "light"
@@ -58,7 +66,7 @@ const Main = () => {
                 World's Fastest
               </Text>
               Gaming Review Web App of the Current Decade.
-            </Text>
+            </MotionText>
             <CircularProgress
               isIndeterminate
               position="absolute"
@@ -93,9 +101,9 @@ const Main = () => {
               Fetching data from all platforms including...{" "}
             </Text>
           </Center>
-          <Grid templateColumns="repeat(5, 1fr)" gap={6} color="white">
+          <Grid templateColumns="repeat(5, 1fr)" gap={4} color="white">
             <Center
-              w="100%"
+              w={"100%"}
               h="240"
               bg={colorMode === "light" ? "blue.400" : "#006d77"}
               rounded="2xl"
@@ -105,7 +113,7 @@ const Main = () => {
               </Text>
             </Center>
 
-            <Center w="100%" h="240" bgColor="#83c5be" rounded="2xl">
+            <Center w="100%" h="240px" bgColor="#83c5be" rounded="2xl">
               <Text fontSize="4xl" fontWeight="extrabold">
                 iOS/Android
               </Text>
