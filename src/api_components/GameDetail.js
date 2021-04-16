@@ -1,66 +1,90 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 //Styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Text, Box, useColorMode, forwardRef } from "@chakra-ui/react";
+import { Text, Box, useColorMode } from "@chakra-ui/react";
 
 //Redux
 import { useSelector } from "react-redux";
 
+//Components
+import { smallImage } from "../util";
 const GameDetail = () => {
+  //Exit Detail Handler
+  const history = useHistory();
+  const exitDetailHandler = (e) => {
+    const element = e.target;
+    if (element.classList.contains("modal")) {
+      document.body.style.overflow = "auto";
+      history.push("/games");
+      //Similar to a link tag but in JS
+    }
+  };
   //Data
   const { colorMode } = useColorMode();
-  const { game, screen } = useSelector((state) => state.detail);
+  const { game, screen, isLoading } = useSelector((state) => state.detail);
   // 1. Create a custom motion component from Box
   const MotionBox = motion(Box);
   return (
-    <CardShadow>
-      {/* // 2. You'll get access to `motion` and `chakra` props in `MotionBox` */}
-      <MotionBox
-        margin="5rem 0rem"
-        width="80%"
-        borderRadius="1rem"
-        padding="2rem 5rem"
-        position="absolute"
-        left="10%"
-        bg={colorMode === "light" ? "#fff" : "#1A202C"}
-        textColor={colorMode === "light" ? "#000" : "#fff"}
-      >
-        <Stats>
-          <div className="rating">
-            <Text fontSize="5xl" fontWeight="bold">
-              {game.name}
-            </Text>
-            <Text fontSize="3xl" fontWeight="normal" fontFamily="mono">
-              Rating: {game.rating}
-            </Text>
-          </div>
-          <Info>
-            <Text fontSize="2xl">Platforms:</Text>
-            <Platforms>
-              {game.platforms &&
-                game.platforms.map((data) => (
-                  <img alt={data.platform.name} key={data.platform.id}></img>
+    <>
+      {!isLoading && (
+        <CardShadow className="modal" onClick={exitDetailHandler}>
+          {/* // 2. You'll get access to `motion` and `chakra` props in `MotionBox` */}
+          <MotionBox
+            margin="5rem 0rem"
+            width="80%"
+            borderRadius="1rem"
+            padding="2rem 5rem"
+            position="absolute"
+            left="10%"
+            bg={colorMode === "light" ? "#fff" : "#1A202C"}
+            textColor={colorMode === "light" ? "#000" : "#fff"}
+          >
+            <Stats>
+              <div className="rating">
+                <Text fontSize="5xl" fontWeight="bold">
+                  {game.name}
+                </Text>
+                <Text fontSize="3xl" fontWeight="normal" fontFamily="mono">
+                  Rating: {game.rating}
+                </Text>
+              </div>
+              <Info>
+                <Text fontSize="2xl">Platforms:</Text>
+                <Platforms>
+                  {game.platforms &&
+                    game.platforms.map((data) => (
+                      <img
+                        alt={data.platform.name}
+                        key={data.platform.id}
+                      ></img>
+                    ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media>
+              <img src={smallImage(game.background_image, 1280)} alt="images" />
+            </Media>
+            <Description>
+              <Text fontFamily="monospace" fontSize="2xl">
+                {game.description_raw}
+              </Text>
+            </Description>
+            <Gallery>
+              {screen.results &&
+                screen.results.map((image) => (
+                  <img
+                    key={image.id}
+                    src={smallImage(image.image, 1280)}
+                    alt="screen"
+                  />
                 ))}
-            </Platforms>
-          </Info>
-        </Stats>
-        <Media>
-          <img src={game.background_image} alt="images" />
-        </Media>
-        <Description>
-          <Text fontFamily="monospace" fontSize="2xl">
-            {game.description_raw}
-          </Text>
-        </Description>
-        <Gallery>
-          {screen.results &&
-            screen.results.map((image) => (
-              <img key={image.id} src={image.image} alt="screen" />
-            ))}
-        </Gallery>
-      </MotionBox>
-    </CardShadow>
+            </Gallery>
+          </MotionBox>
+        </CardShadow>
+      )}
+    </>
   );
 };
 
@@ -112,7 +136,7 @@ const Description = styled(motion.div)`
 
 const Gallery = styled(motion.div)`
   img {
-    padding: 4rem 0rem;
+    padding: 1rem 0rem;
   }
 `;
 export default GameDetail;

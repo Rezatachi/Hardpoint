@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //Styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -7,22 +8,30 @@ import { Text } from "@chakra-ui/react";
 //Redux
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
+
+//Components
+import { smallImage } from "../util";
 const Game = ({ name, image, released, id, screenshots }) => {
-  //Load Details
+  //Load Detail Handler
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
+    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (
-    <StyledGame onClick={loadDetailHandler}>
-      <img src={image} alt={name} />
-      <Text fontSize="3xl" fontFamily="mono" fontWeight="bold">
-        {name}
-      </Text>
-      <Text fontSize="lg" fontFamily="mono" fontWeight="bold">
-        {released}
-      </Text>
-    </StyledGame>
+    <>
+      <StyledGame onClick={loadDetailHandler}>
+        <Link to={`/games/${id}`}>
+          <img src={smallImage(image, 640)} alt={name} />
+          <Text fontSize="3xl" fontFamily="mono" fontWeight="bold">
+            {name}
+          </Text>
+          <Text fontSize="lg" fontFamily="mono" fontWeight="bold">
+            {released}
+          </Text>
+        </Link>
+      </StyledGame>
+    </>
   );
 };
 

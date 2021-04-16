@@ -10,8 +10,12 @@ const App = () => {
       <GlobalStyle />
       <Nav />
       <Switch>
-        <Route exact path="/" component={Main}></Route>
-        <Route path="/games" component={GameHome} />
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path={["/games/:id", "/games"]}>
+          <GameHome />
+        </Route>
       </Switch>
     </div>
   );

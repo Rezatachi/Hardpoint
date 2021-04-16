@@ -207,15 +207,22 @@ const Main = () => {
       <Container
         roundedTop="md"
         mt="15rem"
-        minH="40vh"
+        minH="10vh"
         maxW="100%"
         bg={colorMode === "light" ? "#23d997" : "#4ecdc4"}
         color="white"
       >
-        <Center>
-          <Box my="3rem" mx="5rem">
-            <Stack spacing={10}>
-              <Heading onClick={onToggle}>Github</Heading>
+        <Center d="flex" justifyContent="space-around" alignItems="center">
+          <Box fontSize="2xl">
+            <Icon as={GrReactjs} w={10} h={10} />
+            <Icon as={SiRedux} w={10} h={10} />
+            <Text> Site developed by Abraham Belayneh.</Text>
+            <Text> Created with React.js and Redux</Text>
+          </Box>
+          <Box my="3rem" mx="2rem">
+            <Stack spacing={4}>
+              <Heading fontSize="2xl">Links</Heading>
+              <Text onClick={onToggle}>Github</Text>
               <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
                 <Box
                   p="40px"
@@ -230,18 +237,10 @@ const Main = () => {
                   </Center>
                 </Box>
               </Slide>
-              <Heading>API</Heading>
-              <Heading>Discord</Heading>
+              <Text>API</Text>
+              <Text>Discord</Text>
             </Stack>
           </Box>
-          <Icon as={GrReactjs} w={20} h={20} mx={5} />
-          <Icon as={SiRedux} w={20} h={20} mx={5} />
-          <Stack>
-            <Box my="2rem">
-              <Heading> Site developed by Abraham Belayneh.</Heading>
-              <Heading> Created with React.js and Redux</Heading>
-            </Box>
-          </Stack>
         </Center>
       </Container>
     </>
