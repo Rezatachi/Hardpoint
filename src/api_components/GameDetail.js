@@ -134,9 +134,5 @@ const Description = styled(motion.div)`
   margin: 5rem 0rem;
 `;
 
-const Gallery = styled(motion.div)`
-  img {
-    padding: 1rem 0rem;
-  }
-`;
+const Gallery = styled(motion.div)``;
 export default GameDetail;

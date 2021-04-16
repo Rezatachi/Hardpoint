@@ -19,19 +19,29 @@ import {
   Icon,
   Slide,
   useDisclosure,
+  chakra,
 } from "@chakra-ui/react";
 import { GoArrowRight, GoGithubAction } from "react-icons/go";
 import { GrReactjs } from "react-icons/gr";
 import { SiRedux } from "react-icons/si";
 import { Link } from "react-router-dom";
+//Framer motion
+import { pageAnimation } from "../animation";
+import { motion } from "framer-motion";
 
 const Main = () => {
   const { isOpen, onToggle } = useDisclosure();
-
+  const MotionBox = chakra(motion.div);
   const { colorMode } = useColorMode();
   return (
     <>
-      <Box maxH="300vh">
+      <MotionBox
+        maxH="300vh"
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        variants={pageAnimation}
+      >
         <Container maxW="container.xl" mt="20">
           <Flex>
             <Text fontSize="7xl" fontWeight="semibold">
@@ -53,9 +63,10 @@ const Main = () => {
               isIndeterminate
               position="absolute"
               ml="50rem"
+              mt="-2.5rem"
               zIndex="-1"
               value={30}
-              size="1000px"
+              size="550px"
               color={colorMode === "light" ? "#4ecdc4" : "#23d997"}
             />
           </Flex>
@@ -203,7 +214,8 @@ const Main = () => {
             </AccordionItem>
           </Accordion>
         </Container>
-      </Box>
+      </MotionBox>
+
       <Container
         roundedTop="md"
         mt="15rem"
