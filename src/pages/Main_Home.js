@@ -242,7 +242,9 @@ const Main = () => {
           <Box my="3rem" mx="2rem">
             <Stack spacing={4}>
               <Heading fontSize="2xl">Links</Heading>
-              <Text onClick={onToggle}>Github</Text>
+              <Text cursor="pointer" onClick={onToggle}>
+                Github
+              </Text>
               <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
                 <Box
                   p="40px"
@@ -257,8 +259,8 @@ const Main = () => {
                   </Center>
                 </Box>
               </Slide>
-              <Text>API</Text>
-              <Text>Discord</Text>
+              <Text cursor="pointer">API</Text>
+              <Text cursor="pointer">Discord</Text>
             </Stack>
           </Box>
         </Center>
