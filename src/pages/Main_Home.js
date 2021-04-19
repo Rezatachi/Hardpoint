@@ -101,7 +101,11 @@ const Main = () => {
               Fetching data from all platforms including...{" "}
             </Text>
           </Center>
-          <Grid templateColumns="repeat(5, 1fr)" gap={4} color="white">
+          <Grid
+            templateColumns="repeat(auto-fit, minmax(400px, 1fr))"
+            gap={4}
+            color="white"
+          >
             <Center
               w={"100%"}
               h="240"
@@ -134,6 +138,11 @@ const Main = () => {
             <Center w="100%" h="240" bgColor="#e29578" rounded="2xl">
               <Text fontSize="4xl" fontWeight="extrabold">
                 Nintendo
+              </Text>
+            </Center>
+            <Center w="100%" h="240" bgColor="gray.300" rounded="2xl">
+              <Text fontSize="4xl" fontWeight="extrabold">
+                ...and More
               </Text>
             </Center>
           </Grid>
@@ -222,49 +231,48 @@ const Main = () => {
             </AccordionItem>
           </Accordion>
         </Container>
+        <Container
+          roundedTop="md"
+          mt="15rem"
+          minH="10vh"
+          maxW="100%"
+          bg={colorMode === "light" ? "#23d997" : "#4ecdc4"}
+          color="white"
+        >
+          <Center d="flex" justifyContent="space-around" alignItems="center">
+            <Box fontSize="2xl">
+              <Icon as={GrReactjs} w={10} h={10} />
+              <Icon as={SiRedux} w={10} h={10} />
+              <Text> Site developed by Abraham Belayneh.</Text>
+              <Text> Created with React.js and Redux</Text>
+            </Box>
+            <Box my="3rem" mx="2rem">
+              <Stack spacing={4}>
+                <Heading fontSize="2xl">Links</Heading>
+                <Text cursor="pointer" onClick={onToggle}>
+                  Github
+                </Text>
+                <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
+                  <Box
+                    p="40px"
+                    color="white"
+                    mt="4"
+                    bg="teal.200"
+                    rounded="md"
+                    shadow="md"
+                  >
+                    <Center>
+                      <Heading>CURRENTLY UNDER MAINTENIENCE</Heading>
+                    </Center>
+                  </Box>
+                </Slide>
+                <Text cursor="pointer">API</Text>
+                <Text cursor="pointer">Discord</Text>
+              </Stack>
+            </Box>
+          </Center>
+        </Container>
       </MotionBox>
-
-      <Container
-        roundedTop="md"
-        mt="15rem"
-        minH="10vh"
-        maxW="100%"
-        bg={colorMode === "light" ? "#23d997" : "#4ecdc4"}
-        color="white"
-      >
-        <Center d="flex" justifyContent="space-around" alignItems="center">
-          <Box fontSize="2xl">
-            <Icon as={GrReactjs} w={10} h={10} />
-            <Icon as={SiRedux} w={10} h={10} />
-            <Text> Site developed by Abraham Belayneh.</Text>
-            <Text> Created with React.js and Redux</Text>
-          </Box>
-          <Box my="3rem" mx="2rem">
-            <Stack spacing={4}>
-              <Heading fontSize="2xl">Links</Heading>
-              <Text cursor="pointer" onClick={onToggle}>
-                Github
-              </Text>
-              <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
-                <Box
-                  p="40px"
-                  color="white"
-                  mt="4"
-                  bg="teal.200"
-                  rounded="md"
-                  shadow="md"
-                >
-                  <Center>
-                    <Heading>CURRENTLY UNDER MAINTENIENCE</Heading>
-                  </Center>
-                </Box>
-              </Slide>
-              <Text cursor="pointer">API</Text>
-              <Text cursor="pointer">Discord</Text>
-            </Stack>
-          </Box>
-        </Center>
-      </Container>
     </>
   );
 };
