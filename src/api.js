@@ -1,5 +1,5 @@
 //Base URL
-const base_url = "http://api.rawg.io/api/";
+const base_url = "https://api.rawg.io/api/";
 const key = "6009f7a5bc4a43a0b78b3ffa795b3b51";
 //Getting the date
 const getCurrentMonth = () => {
