@@ -33,12 +33,7 @@ const GameHome = () => {
       {isLoading ? (
         <BounceLoader loading="true" />
       ) : (
-        <GameList
-          initial="hidden"
-          animate="show"
-          exit="exit"
-          variants={pageAnimation}
-        >
+        <GameList initial="hidden" animate="show" variants={pageAnimation}>
           {pathId && <GameDetail />}
           {/* When pathID is availible, go render it. If its not, dont render it */}
           <Flex>
@@ -79,6 +74,9 @@ const GameHome = () => {
             {upcoming &&
               upcoming.map((game) => (
                 <Game
+                  initial="hidden"
+                  animate="show"
+                  variants={pageAnimation}
                   name={game.name}
                   released={game.released}
                   id={game.id}
@@ -95,6 +93,9 @@ const GameHome = () => {
             {popular &&
               popular.map((game) => (
                 <Game
+                  initial="hidden"
+                  animate="show"
+                  variants={pageAnimation}
                   name={game.name}
                   released={game.released}
                   id={game.id}
@@ -111,6 +112,9 @@ const GameHome = () => {
             {newGames &&
               newGames.map((game) => (
                 <Game
+                  initial="hidden"
+                  animate="show"
+                  variants={pageAnimation}
                   name={game.name}
                   released={game.released}
                   id={game.id}
