@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
 
 //Components
-import { smallImage } from "../util";
+
 const Game = ({ name, image, released, id, screenshots }) => {
   //Load Detail Handler
   const dispatch = useDispatch();

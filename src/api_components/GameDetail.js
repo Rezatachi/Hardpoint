@@ -5,14 +5,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Text, Box, useColorMode } from "@chakra-ui/react";
 
-//Images
-import { apple } from "../img/apple.svg";
-
 //Redux
 import { useSelector } from "react-redux";
 
-//Components
-import { smallImage } from "../util";
 const GameDetail = () => {
   //Exit Detail Handler
   const history = useHistory();
