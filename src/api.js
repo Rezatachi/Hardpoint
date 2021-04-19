@@ -38,8 +38,13 @@ export const popularGamesURL = () => `${base_url}${popular_games}`;
 export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
 export const newGamesURL = () => `${base_url}${newGames}`;
 // Game details
-export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}`;
+export const gameDetailsURL = (game_id) =>
+  `${base_url}games/${game_id}?key=${key}`;
 
 // Screenshots
 export const gameScreenshotURL = (game_id) =>
-  `${base_url}games/${game_id}/screenshots`;
+  `${base_url}games/${game_id}/screenshots?key=${key}`;
+
+//Searcg
+export const gameSearchURL = (game_name) =>
+  `${base_url}games?key=${key}&search=${game_name}&page_size=9`;

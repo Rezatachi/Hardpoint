@@ -1,19 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { loadGames } from "../actions/gamesAction";
-import React, { useEffect } from "react";
+import { loadGames, fetchSearch } from "../actions/gamesAction";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { useLocation } from "react-router-dom";
 //Styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Text, Flex } from "@chakra-ui/react";
-import { pageAnimation } from "../animation";
+import {
+  Text,
+  Flex,
+  Input,
+  useColorMode,
+  Button,
+  FormControl,
+} from "@chakra-ui/react";
+
 //Components
 import Game from "../api_components/Game";
 import GameDetail from "../api_components/GameDetail";
-import { BounceLoader } from "react-spinners";
 
 const GameHome = () => {
+  //DarkMode
+  const { colorMode } = useColorMode();
   //FETCH GAMES
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
@@ -22,99 +30,99 @@ const GameHome = () => {
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
-
+  const [textInput, settextInput] = useState("");
+  const inputHander = (e) => {
+    settextInput(e.target.value);
+  };
+  const sumbitHander = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearch(textInput));
+    settextInput("");
+  };
+  const clearSearched = () => {
+    dispatch({ type: "CLEAR_SEARACHED" });
+  };
   //Extract GAMES
-  const { popular, newGames, upcoming, isLoading } = useSelector(
+  const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
 
   return (
     <>
-      {isLoading ? (
-        <BounceLoader loading="true" />
-      ) : (
-        <GameList initial="hidden" animate="show" variants={pageAnimation}>
-          {pathId && <GameDetail />}
-          {/* When pathID is availible, go render it. If its not, dont render it */}
-          <Flex>
-            <Text
-              fontSize="4xl"
-              py="3rem"
-              fontWeight="extrabold"
-              cursor="pointer"
-            >
-              <Link to="upcoming" spy={true} smooth={true}>
-                Upcoming Games
-              </Link>
-            </Text>
-            <Text
-              fontSize="4xl"
-              py="3rem"
-              fontWeight="extrabold"
-              pl="4rem"
-              cursor="pointer"
-            >
-              <Link to="popular" spy={true} smooth={true}>
-                Popular Games
-              </Link>
-            </Text>
-            <Text
-              fontSize="4xl"
-              py="3rem"
-              fontWeight="extrabold"
-              pl="4rem"
-              cursor="pointer"
-            >
-              <Link to="newGames" spy={true} smooth={true}>
-                New Games
-              </Link>
-            </Text>
-          </Flex>
-          <Games id="upcoming">
-            {upcoming &&
-              upcoming.map((game) => (
-                <Game
-                  initial="hidden"
-                  animate="show"
-                  variants={pageAnimation}
-                  name={game.name}
-                  released={game.released}
-                  id={game.id}
-                  key={game.id}
-                  image={game.background_image}
-                  screenshots={game.short_screenshots}
-                />
-              ))}
-          </Games>
-          <Text fontSize="4xl" py="3rem" fontWeight="extrabold">
-            Popular Games
+      <GameList>
+        {pathId && <GameDetail />}
+        {/* When pathID is availible, go render it. If its not, dont render it */}
+        <Flex alignItems="center">
+          <Text
+            fontSize="3xl"
+            py="2rem"
+            fontWeight="extrabold"
+            cursor="pointer"
+            onClick={clearSearched}
+          >
+            <Link to="upcoming" spy={true} smooth={true}>
+              Upcoming Games
+            </Link>
           </Text>
-          <Games id="popular">
-            {popular &&
-              popular.map((game) => (
-                <Game
-                  initial="hidden"
-                  animate="show"
-                  variants={pageAnimation}
-                  name={game.name}
-                  released={game.released}
-                  id={game.id}
-                  key={game.id}
-                  image={game.background_image}
-                  screenshots={game.short_screenshots}
-                />
-              ))}
-          </Games>
-          <Text fontSize="4xl" py="3rem" fontWeight="extrabold">
-            New Games
+          <Text
+            fontSize="3xl"
+            py="3rem"
+            fontWeight="extrabold"
+            pl="2rem"
+            cursor="pointer"
+          >
+            <Link to="popular" spy={true} smooth={true}>
+              Popular Games
+            </Link>
           </Text>
-          <Games id="newGames">
-            {newGames &&
-              newGames.map((game) => (
+          <Text
+            fontSize="3xl"
+            py="3rem"
+            fontWeight="extrabold"
+            pl="2rem"
+            cursor="pointer"
+          >
+            <Link to="newGames" spy={true} smooth={true}>
+              New Games
+            </Link>
+          </Text>
+          <FormControl
+            onSubmit={sumbitHander}
+            ml="20rem"
+            maxW="lg"
+            display="flex"
+            alignItems="center"
+            justifyContent="flex-end"
+          >
+            <Input
+              borderColor={colorMode === "light" ? "teal.400" : "#23d997"}
+              focusBorderColor={colorMode === "light" ? "teal.400" : "#23d997"}
+              placeholder="search for games!"
+              size="md"
+              w="20rem"
+              onChange={inputHander}
+              onSubmit={sumbitHander}
+              type="text"
+            />
+            <Button
+              type="submit"
+              onClick={sumbitHander}
+              bg={colorMode === "light" ? "teal.200" : "#23d997"}
+              ml={2}
+            >
+              Search
+            </Button>
+          </FormControl>
+        </Flex>
+
+        {searched.length ? (
+          <>
+            <Text fontSize="4xl" py="3rem" fontWeight="extrabold">
+              Searched Results
+            </Text>
+            <Games>
+              {searched.map((game) => (
                 <Game
-                  initial="hidden"
-                  animate="show"
-                  variants={pageAnimation}
                   name={game.name}
                   released={game.released}
                   id={game.id}
@@ -123,10 +131,61 @@ const GameHome = () => {
                   screenshots={game.short_screenshots}
                 />
               ))}
-          </Games>
-          {/* If Upcoming games are availible, the component WILL be mapped */}
-        </GameList>
-      )}
+            </Games>
+          </>
+        ) : (
+          ""
+        )}
+        <Text fontSize="4xl" py="3rem" fontWeight="extrabold">
+          Upcoming Games
+        </Text>
+        <Games id="upcoming">
+          {upcoming &&
+            upcoming.map((game) => (
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                key={game.id}
+                image={game.background_image}
+                screenshots={game.short_screenshots}
+              />
+            ))}
+        </Games>
+        <Text fontSize="4xl" py="3rem" fontWeight="extrabold">
+          Popular Games
+        </Text>
+        <Games id="popular">
+          {popular &&
+            popular.map((game) => (
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                key={game.id}
+                image={game.background_image}
+                screenshots={game.short_screenshots}
+              />
+            ))}
+        </Games>
+        <Text fontSize="4xl" py="3rem" fontWeight="extrabold">
+          New Games
+        </Text>
+        <Games id="newGames">
+          {newGames &&
+            newGames.map((game) => (
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                key={game.id}
+                image={game.background_image}
+                screenshots={game.short_screenshots}
+              />
+            ))}
+        </Games>
+        {/* If Upcoming games are availible, the component WILL be mapped */}
+      </GameList>
     </>
   );
 };

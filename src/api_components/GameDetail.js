@@ -4,7 +4,14 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Text, Box, useColorMode } from "@chakra-ui/react";
-
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import xbox from "../img/xbox.svg";
+import nintendo from "../img/nintendo.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 //Redux
 import { useSelector } from "react-redux";
 
@@ -19,6 +26,40 @@ const GameDetail = () => {
       //Similar to a link tag but in JS
     }
   };
+
+  //Star creator
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        //If it is smaller than a number, it will keep adding until it is bigger
+        stars.push(<img alt="star" key={i} src={starFull}></img>);
+        //Get the rating and loop over it and find the number and it corresponds with how many stars will be creates
+      } else {
+        stars.push(<img alt="star" key={i} src={starEmpty}></img>);
+      }
+    }
+    return stars;
+  };
+  //Case secction for multiple iamge for playforms
+  const getPlatforms = (platform) => {
+    switch (platform) {
+      case "Playstation 4":
+        return playstation;
+      case "Xbox One":
+        return xbox;
+      case "PC":
+        return steam;
+      case "Nintendo Switch":
+        return nintendo;
+      case "iOS":
+        return apple;
+      default:
+        return gamepad;
+    }
+  };
+
   //Data
   const { colorMode } = useColorMode();
   const { game, screen, isLoading } = useSelector((state) => state.detail);
@@ -47,15 +88,20 @@ const GameDetail = () => {
                 <Text fontSize="3xl" fontWeight="normal" fontFamily="mono">
                   Rating: {game.rating}
                 </Text>
+                {getStars()}
               </div>
               <Info>
-                <Text fontSize="2xl">Platforms:</Text>
+                <Text fontSize="2xl" fontWeight="semibold">
+                  Platforms:
+                </Text>
                 <Platforms>
                   {game.platforms &&
                     game.platforms.map((data) => (
                       <img
+                        src={getPlatforms(data.platform.name)}
                         alt={data.platform.name}
                         key={data.platform.id}
+                        title={data.platform.name}
                       ></img>
                     ))}
                 </Platforms>
@@ -72,7 +118,7 @@ const GameDetail = () => {
             <Gallery>
               {screen.results &&
                 screen.results.map((image) => (
-                  <img key={image.id} src={image} alt="screen" />
+                  <img key={image.id} src={image.image} alt="screen" />
                 ))}
             </Gallery>
           </MotionBox>
@@ -102,6 +148,11 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline;
+  }
 `;
 
 const Info = styled(motion.div)`
@@ -113,6 +164,8 @@ const Platforms = styled(motion.div)`
   justify-content: space-evenly;
   img {
     margin-left: 3rem;
+    width: 3rem;
+    height: 3rem;
   }
 `;
 
