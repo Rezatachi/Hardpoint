@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Text, Box, useColorMode } from "@chakra-ui/react";
 
+//Images
+import { apple } from "../img/apple.svg";
+
 //Redux
 import { useSelector } from "react-redux";
 
@@ -64,7 +67,7 @@ const GameDetail = () => {
               </Info>
             </Stats>
             <Media>
-              <img src={smallImage(game.background_image, 1280)} alt="images" />
+              <img src={game.background_image} alt="images" />
             </Media>
             <Description>
               <Text fontFamily="monospace" fontSize="2xl">
@@ -74,11 +77,7 @@ const GameDetail = () => {
             <Gallery>
               {screen.results &&
                 screen.results.map((image) => (
-                  <img
-                    key={image.id}
-                    src={smallImage(image.image, 1280)}
-                    alt="screen"
-                  />
+                  <img key={image.id} src={image} alt="screen" />
                 ))}
             </Gallery>
           </MotionBox>

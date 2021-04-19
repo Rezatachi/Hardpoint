@@ -22,7 +22,7 @@ const Game = ({ name, image, released, id, screenshots }) => {
     <>
       <StyledGame onClick={loadDetailHandler}>
         <Link to={`/games/${id}`}>
-          <img src={smallImage(image, 640)} alt={name} />
+          <img src={image} alt={name} />
           <Text fontSize="3xl" fontFamily="mono" fontWeight="bold">
             {name}
           </Text>
