@@ -11,7 +11,7 @@ import { loadDetail } from "../actions/detailAction";
 
 //Components
 
-const Game = ({ name, image, released, id, screenshots }) => {
+const Game = ({ name, image, released, id }) => {
   //Load Detail Handler
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
