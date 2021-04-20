@@ -13,6 +13,7 @@ import {
   useColorMode,
   Button,
   FormControl,
+  Container,
 } from "@chakra-ui/react";
 
 //Components
@@ -186,6 +187,19 @@ const GameHome = () => {
         </Games>
         {/* If Upcoming games are availible, the component WILL be mapped */}
       </GameList>
+      <Container
+        mt="15rem"
+        minH="20vh"
+        maxW="100%"
+        textColor={colorMode === "light" ? "black" : "#fff"}
+        d="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Text fontSize="2xl" fontWeight="semibold" textAlign="center">
+          Made with ❤ by Abraham Belayneh
+        </Text>
+      </Container>
     </>
   );
 };

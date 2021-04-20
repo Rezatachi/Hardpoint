@@ -85,14 +85,16 @@ const Main = () => {
                 Learn More
               </Button>
             </Link>
-            <Button
-              leftIcon={<GoGithubAction />}
-              size="lg"
-              colorScheme="teal"
-              variant="outline"
-            >
-              Github
-            </Button>
+            <a href="https://github.com/Rezatachi">
+              <Button
+                leftIcon={<GoGithubAction />}
+                size="lg"
+                colorScheme="teal"
+                variant="outline"
+              >
+                Github
+              </Button>
+            </a>
           </Stack>
         </Container>
         <Container maxW="100%" mt="15rem" px="7rem">
@@ -151,7 +153,7 @@ const Main = () => {
           <Heading fontSize="6xl" py="2rem">
             FAQ/Answers
           </Heading>
-          <Accordion defaultIndex={[0]} allowMultiple>
+          <Accordion defaultIndex={[0]}>
             <AccordionItem>
               <AccordionButton>
                 <Box flex="1" textAlign="left">
@@ -232,45 +234,17 @@ const Main = () => {
           </Accordion>
         </Container>
         <Container
-          roundedTop="md"
           mt="15rem"
-          minH="10vh"
+          minH="20vh"
           maxW="100%"
-          bg={colorMode === "light" ? "#23d997" : "#4ecdc4"}
-          color="white"
+          textColor={colorMode === "light" ? "black" : "#fff"}
+          d="flex"
+          alignItems="center"
+          justifyContent="center"
         >
-          <Center d="flex" justifyContent="space-around" alignItems="center">
-            <Box fontSize="2xl">
-              <Icon as={GrReactjs} w={10} h={10} />
-              <Icon as={SiRedux} w={10} h={10} />
-              <Text> Site developed by Abraham Belayneh.</Text>
-              <Text> Created with React.js and Redux</Text>
-            </Box>
-            <Box my="3rem" mx="2rem">
-              <Stack spacing={4}>
-                <Heading fontSize="2xl">Links</Heading>
-                <Text cursor="pointer" onClick={onToggle}>
-                  Github
-                </Text>
-                <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
-                  <Box
-                    p="40px"
-                    color="white"
-                    mt="4"
-                    bg="teal.200"
-                    rounded="md"
-                    shadow="md"
-                  >
-                    <Center>
-                      <Heading>CURRENTLY UNDER MAINTENIENCE</Heading>
-                    </Center>
-                  </Box>
-                </Slide>
-                <Text cursor="pointer">API</Text>
-                <Text cursor="pointer">Discord</Text>
-              </Stack>
-            </Box>
-          </Center>
+          <Text fontSize="2xl" fontWeight="semibold" textAlign="center">
+            Made with ❤ by Abraham Belayneh
+          </Text>
         </Container>
       </MotionBox>
     </>
