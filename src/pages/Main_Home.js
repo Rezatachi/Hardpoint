@@ -16,21 +16,16 @@ import {
   Heading,
   CircularProgress,
   Flex,
-  Icon,
-  Slide,
-  useDisclosure,
   chakra,
 } from "@chakra-ui/react";
 import { GoArrowRight, GoGithubAction } from "react-icons/go";
-import { GrReactjs } from "react-icons/gr";
-import { SiRedux } from "react-icons/si";
+
 import { Link } from "react-router-dom";
 //Framer motion
 import { pageAnimation, fade } from "../animation";
 import { motion } from "framer-motion";
 
 const Main = () => {
-  const { isOpen, onToggle } = useDisclosure();
   const MotionBox = chakra(motion.div);
   const MotionText = chakra(motion.h1);
   const { colorMode } = useColorMode();
