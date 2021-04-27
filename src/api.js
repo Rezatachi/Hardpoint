@@ -47,4 +47,4 @@ export const gameScreenshotURL = (game_id) =>
 
 //Searcg
 export const gameSearchURL = (game_name) =>
-  `${base_url}games?key=${key}&search=${game_name}&page_size=9`;
+  `${base_url}games?key=${key}&search=${game_name}&page_size=10`;

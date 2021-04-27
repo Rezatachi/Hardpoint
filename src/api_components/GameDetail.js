@@ -85,7 +85,11 @@ const GameDetail = () => {
                 <Text fontSize="5xl" fontWeight="bold">
                   {game.name}
                 </Text>
-                <Text fontSize="3xl" fontWeight="normal" fontFamily="mono">
+                <Text fontSize="md" fontWeight="bold">
+                  <a href={game.website}>Go To Website</a>{" "}
+                </Text>
+
+                <Text fontSize="md" fontWeight="semibold" fontFamily="mono">
                   Rating: {game.rating}
                 </Text>
                 {getStars()}
