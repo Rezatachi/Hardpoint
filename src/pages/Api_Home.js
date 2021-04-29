@@ -19,6 +19,8 @@ import {
 //Components
 import Game from "../api_components/Game";
 import GameDetail from "../api_components/GameDetail";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const GameHome = () => {
   //DarkMode
@@ -39,6 +41,13 @@ const GameHome = () => {
     e.preventDefault();
     dispatch(fetchSearch(textInput));
     settextInput("");
+  };
+
+  const handleKeypress = (e) => {
+    if (e.key === "Enter") {
+      console.log("succse");
+      sumbitHander(e);
+    }
   };
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARACHED" });
@@ -88,9 +97,7 @@ const GameHome = () => {
             </Link>
           </Text>
           <FormControl
-            onSubmit={sumbitHander}
-            ml="20rem"
-            maxW="lg"
+            minW="lg"
             display="flex"
             alignItems="center"
             justifyContent="flex-end"
@@ -99,19 +106,22 @@ const GameHome = () => {
               borderColor={colorMode === "light" ? "teal.400" : "#23d997"}
               focusBorderColor={colorMode === "light" ? "teal.400" : "#23d997"}
               placeholder="search for games!"
+              rounded="lg"
               size="md"
-              w="20rem"
+              w="30rem"
+              h="2.6rem"
               onChange={inputHander}
-              onSubmit={sumbitHander}
+              onKeyDown={handleKeypress}
               type="text"
             />
             <Button
               type="submit"
               onClick={sumbitHander}
               bg={colorMode === "light" ? "teal.200" : "#23d997"}
-              ml={2}
+              ml={1}
+              paddingY="1rem"
             >
-              Search
+              <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
             </Button>
           </FormControl>
         </Flex>

@@ -154,9 +154,9 @@ const Stats = styled(motion.div)`
   align-items: center;
   justify-content: space-between;
   img {
-    width: 1.5rem;
-    height: 1.5rem;
     display: inline;
+    width: 2rem;
+    height: 2rem;
   }
 `;
 
